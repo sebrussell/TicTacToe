@@ -1,2 +1,13 @@
-﻿  Hexagons.vcxproj -> H:\C++\January AI - Copy\Release\Hexagons.exe
-  Hexagons.vcxproj -> H:\C++\January AI - Copy\Release\Hexagons.pdb (Full PDB)
+﻿  GameState.cpp
+  Source.cpp
+c:\users\sebru_000\desktop\tictactoe\hexagons\Tree.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Tree.cpp
+c:\users\sebru_000\desktop\tictactoe\hexagons\Tree.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating code
+c:\users\sebru_000\desktop\tictactoe\hexagons\tree.cpp(71): warning C4715: 'Tree::CalculateNodeValues': not all control paths return a value
+  274 of 275 functions (99.6%) were compiled, the rest were copied from previous compilation.
+    6 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Hexagons.vcxproj -> C:\Users\sebru_000\Desktop\TicTacToe\Release\Hexagons.exe
+  Hexagons.vcxproj -> C:\Users\sebru_000\Desktop\TicTacToe\Release\Hexagons.pdb (Full PDB)
