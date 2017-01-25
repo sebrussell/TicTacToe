@@ -24,7 +24,7 @@ void Tree::GenerateTree()
 	{
 		if (m_nodesToExpand.front()->GetGameStatus() == GameState::playing)
 		{
-			for (size_t i = 0; i < 3; i++) {
+			for (size_t i = 0; i < 9; i++) {
 				std::string tempString = m_nodesToExpand.front()->GetBoardString();
 				std::shared_ptr<GameState> tempBoard(new GameState);
 				if (tempString[i] == ' ')
@@ -60,17 +60,21 @@ int Tree::CalculateNodeValues(std::shared_ptr<GameState>& _node)
 
 	if (_node->GetNodeValue() == 0)
 	{
-		for (std::list<std::shared_ptr<GameState>>::iterator& iterator = _node->GetChildNodes().begin(), end = _node->GetChildNodes().end(); iterator != end; ++iterator)
+		for (std::shared_ptr<GameState> l : _node->GetChildNodes())
 		{
-			t = CalculateNodeValues(*iterator);
 			_node->SetNodeValue(t);
-			return _node->GetNodeValue();
+			if (t == 0)
+			{
+				t = CalculateNodeValues(l);
+				_node->SetNodeValue(t);
+			}
+			
+			
 		}
 	}
 	else
 	{
 		return _node->GetNodeValue();
 	}
-
 
 }

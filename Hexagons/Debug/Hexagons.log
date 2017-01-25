@@ -1,7 +1,7 @@
 ﻿  Tree.cpp
 c:\users\sebru_000\desktop\tictactoe\hexagons\tree.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Generating Code...
-c:\users\sebru_000\desktop\tictactoe\hexagons\tree.cpp(76): warning C4715: 'Tree::CalculateNodeValues': not all control paths return a value
+c:\users\sebru_000\desktop\tictactoe\hexagons\tree.cpp(80): warning C4715: 'Tree::CalculateNodeValues': not all control paths return a value
   Skipping... (no relevant changes detected)
   Source.cpp
   Hexagons.vcxproj -> C:\Users\sebru_000\Desktop\TicTacToe\Debug\Hexagons.exe
