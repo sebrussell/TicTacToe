@@ -47,7 +47,7 @@ int main(int argc, char **argv)															//start of main
 	int position;
 	std::string tempString;
 
-
+	bool gameOver = false;
 
 	while (1 == 1)																										//loop through until done
 	{
@@ -75,20 +75,41 @@ int main(int argc, char **argv)															//start of main
 		{
 			std::shared_ptr<GameState> tempNode = test.GetNode()->GetChildNodes().front();
 
-			for (std::shared_ptr<GameState> l : test.GetNode()->GetChildNodes())		//change this to actual not 2015 stuff
+			if (test.GetNode()->GetChildNodes().size() > 0)
 			{
-				if (l->GetNodeValue() > tempNode->GetNodeValue())
+				for (std::shared_ptr<GameState> l : test.GetNode()->GetChildNodes())		//change this to actual not 2015 stuff
 				{
-					tempNode = l;
+					if (l->GetNodeValue() < tempNode->GetNodeValue())
+					{
+						tempNode = l;
+					}
 				}
 			}
+			else
+			{
+				gameOver = true;
+			}
+			
 
 			test.SetNode(tempNode);
 		}
 
-		std::cout << test.GetNode()->GetBoardString()[0] << " " << test.GetNode()->GetBoardString()[1] << " " << test.GetNode()->GetBoardString()[2] << std::endl;
-		std::cout << test.GetNode()->GetBoardString()[3] << " " << test.GetNode()->GetBoardString()[4] << " " << test.GetNode()->GetBoardString()[5] << std::endl;
-		std::cout << test.GetNode()->GetBoardString()[6] << " " << test.GetNode()->GetBoardString()[7] << " " << test.GetNode()->GetBoardString()[8] << std::endl;
+		if (gameOver == false)
+		{
+			std::cout << test.GetNode()->GetBoardString()[0] << "|" << test.GetNode()->GetBoardString()[1] << "|" << test.GetNode()->GetBoardString()[2] << std::endl;
+			std::cout << "-----" << std::endl;
+			std::cout << test.GetNode()->GetBoardString()[3] << "|" << test.GetNode()->GetBoardString()[4] << "|" << test.GetNode()->GetBoardString()[5] << std::endl;
+			std::cout << "-----" << std::endl;
+			std::cout << test.GetNode()->GetBoardString()[6] << "|" << test.GetNode()->GetBoardString()[7] << "|" << test.GetNode()->GetBoardString()[8] << std::endl;
+			std::cout << std::endl;
+			std::cout << std::endl;
+		}
+		else
+		{
+			std::cout << "Game over";
+		}
+
+		
  		
 		
 		end = clock();
@@ -132,7 +153,7 @@ int InitialiseAllegro(ALLEGRO_TIMER * timer, ALLEGRO_DISPLAY * display)
 		return -1;
 	}
 
-	display = al_create_display(SCREEN_W, SCREEN_H);
+	//display = al_create_display(SCREEN_W, SCREEN_H);
 	if (!display) {
 		fprintf(stderr, "failed to create display!\n");
 		al_destroy_timer(timer);

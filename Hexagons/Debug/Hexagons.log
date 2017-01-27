@@ -1,4 +1,4 @@
 ﻿  Source.cpp
-h:\github\tictactoe\hexagons\tree.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Hexagons.vcxproj -> H:\GitHub\TicTacToe\Debug\Hexagons.exe
-  Hexagons.vcxproj -> H:\GitHub\TicTacToe\Debug\Hexagons.pdb (Partial PDB)
+\\bournemouth.ac.uk\data\student\home\scitech\i7442129\github\tictactoe\hexagons\tree.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Hexagons.vcxproj -> \\bournemouth.ac.uk\data\Student\Home\SciTech\i7442129\GitHub\TicTacToe\Debug\Hexagons.exe
+  Hexagons.vcxproj -> \\bournemouth.ac.uk\data\Student\Home\SciTech\i7442129\GitHub\TicTacToe\Debug\Hexagons.pdb (Partial PDB)
