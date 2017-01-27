@@ -25,13 +25,14 @@ public:
 	void TurnPlaced(bool _xturn);
 	bool DidXGoLast();
 	int GetNodeValue();
-	void SetNodeValue(int _value);
+	void SetNodeValue(double _value);
 	std::list<std::shared_ptr<GameState>> GetChildNodes();
 private:
 	std::string m_boardString;
 	Status m_boardStatus;
 	std::list<std::shared_ptr<GameState>> m_childNodes;
 	bool m_xTurnLast;
-	int m_nodeValue;
+	double m_nodeValue;
+	int m_multiplier;
 };
 

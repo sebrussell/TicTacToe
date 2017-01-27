@@ -6,12 +6,15 @@ GameState::GameState()
 	m_boardStatus = playing;
 	m_xTurnLast = false;
 	m_nodeValue = 0;
+	m_multiplier = 1;
 }
 
 GameState::GameState(std::string _board)
 {
 	m_boardString = _board;
+	m_xTurnLast = false;
 	m_nodeValue = 0;
+	m_multiplier = 1;
 	CheckForWin();
 }
 
@@ -28,10 +31,11 @@ void GameState::CheckForWin()
 		if (m_boardString[i] == ' ')
 		{
 			m_boardStatus = playing;
+			m_multiplier += 1;
 		}
 	}
 
-	if (m_boardString[0] == m_boardString[1] && m_boardString[1] == m_boardString[2] && m_boardString[0] != ' ')
+	if (m_boardString[0] == m_boardString[1] && m_boardString[1] == m_boardString[2] && m_boardString[0] != ' ')		//remove the empty check
 	{
 		if (m_boardString[0] == 'x')
 		{
@@ -45,7 +49,7 @@ void GameState::CheckForWin()
 
 	if (m_boardString[3] == m_boardString[4] && m_boardString[4] == m_boardString[5] && m_boardString[3] != ' ')
 	{
-		if (m_boardString[0] == 'x')
+		if (m_boardString[3] == 'x')
 		{
 			m_boardStatus = xWon;
 		}
@@ -57,7 +61,7 @@ void GameState::CheckForWin()
 
 	if (m_boardString[6] == m_boardString[7] && m_boardString[7] == m_boardString[8] && m_boardString[6] != ' ')
 	{
-		if (m_boardString[0] == 'x')
+		if (m_boardString[6] == 'x')
 		{
 			m_boardStatus = xWon;
 		}
@@ -81,7 +85,7 @@ void GameState::CheckForWin()
 
 	if (m_boardString[1] == m_boardString[4] && m_boardString[4] == m_boardString[7] && m_boardString[1] != ' ')
 	{
-		if (m_boardString[0] == 'x')
+		if (m_boardString[1] == 'x')
 		{
 			m_boardStatus = xWon;
 		}
@@ -93,7 +97,7 @@ void GameState::CheckForWin()
 
 	if (m_boardString[2] == m_boardString[5] && m_boardString[5] == m_boardString[8] && m_boardString[2] != ' ')
 	{
-		if (m_boardString[0] == 'x')
+		if (m_boardString[2] == 'x')
 		{
 			m_boardStatus = xWon;
 		}
@@ -117,7 +121,7 @@ void GameState::CheckForWin()
 
 	if (m_boardString[2] == m_boardString[4] && m_boardString[4] == m_boardString[6] && m_boardString[2] != ' ')
 	{
-		if (m_boardString[0] == 'x')
+		if (m_boardString[2] == 'x')
 		{
 			m_boardStatus = xWon;
 		}
@@ -145,6 +149,8 @@ void GameState::CheckForWin()
 		m_nodeValue = 0;
 		break;
 	}
+
+	m_nodeValue *= m_multiplier;
 }
 
 std::string GameState::GetBoardString()
@@ -182,7 +188,7 @@ int GameState::GetNodeValue()
 	return m_nodeValue;
 }
 
-void GameState::SetNodeValue(int _value)
+void GameState::SetNodeValue(double _value)
 {
 	m_nodeValue += _value;
 }

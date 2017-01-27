@@ -52,29 +52,29 @@ void Tree::GenerateTree()
 	printf("Generated the tree");
 
 	CalculateNodeValues(rootNode);
+
+	printf("Given the node values");
 }
 
-int Tree::CalculateNodeValues(std::shared_ptr<GameState>& _node)
+double Tree::CalculateNodeValues(std::shared_ptr<GameState>& _node)
 {
-	int t = 0;
+	double t = 0;
 
-	if (_node->GetNodeValue() == 0)
+	for (std::shared_ptr<GameState> l : _node->GetChildNodes())		//change this to actual not 2015 stuff
 	{
-		for (std::shared_ptr<GameState> l : _node->GetChildNodes())
-		{
-			_node->SetNodeValue(t);
-			if (t == 0)
-			{
-				t = CalculateNodeValues(l);
-				_node->SetNodeValue(t);
-			}
-			
-			
-		}
-	}
-	else
-	{
-		return _node->GetNodeValue();
+		t = CalculateNodeValues(l);
+		_node->SetNodeValue(t);
 	}
 
+	return _node->GetNodeValue();
+}
+
+std::shared_ptr<GameState> Tree::GetNode()
+{
+	return rootNode;
+}
+
+void Tree::SetNode(std::shared_ptr<GameState> _node)
+{
+	rootNode = _node;
 }
