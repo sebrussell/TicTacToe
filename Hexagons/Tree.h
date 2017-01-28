@@ -1,6 +1,6 @@
 #pragma once
 #include "GameState.h"
-#include <algorithm>>
+#include <algorithm>
 
 class Tree
 {

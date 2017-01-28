@@ -1,9 +1,8 @@
 ﻿  Source.cpp
-\\bournemouth.ac.uk\data\student\home\scitech\i7442129\github\tictactoe\hexagons\Tree.h(3): warning C4067: unexpected tokens following preprocessor directive - expected a newline
   Generating code
-  1 of 311 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  1 of 321 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  Hexagons.vcxproj -> \\bournemouth.ac.uk\data\Student\Home\SciTech\i7442129\GitHub\TicTacToe\Release\Hexagons.exe
-  Hexagons.vcxproj -> \\bournemouth.ac.uk\data\Student\Home\SciTech\i7442129\GitHub\TicTacToe\Release\Hexagons.pdb (Full PDB)
+  Hexagons.vcxproj -> C:\Users\sebru_000\Desktop\TicTacToe\Release\Hexagons.exe
+  Hexagons.vcxproj -> C:\Users\sebru_000\Desktop\TicTacToe\Release\Hexagons.pdb (Full PDB)
