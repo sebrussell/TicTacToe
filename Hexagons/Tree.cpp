@@ -6,6 +6,7 @@ Tree::Tree()
 {
 	GameState temp("         ");
 	rootNode = std::make_shared<GameState>(temp);
+	GenerateTree();
 }
 
 
@@ -16,7 +17,6 @@ Tree::Tree()
 void Tree::GenerateTree()
 {
 	std::list<std::shared_ptr<GameState>> m_nodesToExpand;
-	//std::list<GameState> m_nodesToExpand;
 
 	m_nodesToExpand.push_back(rootNode);
 
@@ -49,11 +49,11 @@ void Tree::GenerateTree()
 		m_nodesToExpand.erase(m_nodesToExpand.begin());
 	}
 
-	printf("Generated the tree");
+	std::cout << "Generated the tree" << std::endl;
 
 	CalculateNodeValues(rootNode);
 
-	printf("Given the node values");
+	std::cout << "Given the node values" << std::endl;
 }
 
 double Tree::CalculateNodeValues(std::shared_ptr<GameState>& _node)

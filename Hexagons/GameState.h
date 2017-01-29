@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-//#include <vector>
+#include <vector>
 #include <list>
 #include <memory>
 
@@ -27,6 +27,7 @@ public:
 	int GetNodeValue();
 	void SetNodeValue(double _value);
 	std::list<std::shared_ptr<GameState>> GetChildNodes();
+	std::vector<int> GetWinningPosition();
 private:
 	std::string m_boardString;
 	Status m_boardStatus;
@@ -34,5 +35,6 @@ private:
 	bool m_xTurnLast;
 	double m_nodeValue;
 	int m_multiplier;
+	std::vector<int> m_winningPositions;
 };
 

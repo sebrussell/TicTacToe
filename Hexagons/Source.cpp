@@ -11,126 +11,76 @@
 #include "Allegro.h"
 #include "Draw.h"
 
-// nice colour (42, 120, 242);
+void PlayGame(int _mousePosition, bool _playerLastWent, Tree& _tree);
 
-
-
-//list of functions so main can use them, would be better in a different file 
-
-int main(int argc, char **argv)															//start of main 
+int main(int argc, char **argv)
 {
-	double deltaTime = 0;
-	double totalTime = 0;
-	std::clock_t begin, end;
-
 	Allegro allegro;
-	allegro.Initialise();
+	Draw draw(allegro.display);
+	Tree tree;
 
-	srand(time(NULL));
+	bool playerToGoFirst = false;
 
-	Draw draw;
-	Tree test;
-	test.GenerateTree();
+	while (tree.GetNode()->GetGameStatus() == GameState::playing)
+	{
+		draw.Update(tree.GetNode());
+		PlayGame(draw.GetInput(), playerToGoFirst, tree);
+	}
 
-	int position;
+	draw.DrawOutcome(tree.GetNode());
+	return 0;
+}
+
+void PlayGame(int _mousePosition, bool _playerWentFirst, Tree& _tree)
+{
 	std::string tempString;
 
-	bool gameOver = false;
-	bool playerToGoFirst = true;
-
-	while (1 == 1)																						
+	if ((_tree.GetNode()->DidXGoLast() == false && _playerWentFirst == true) || (_tree.GetNode()->DidXGoLast() == true && _playerWentFirst == false))
 	{
-		begin = clock();
-		
-		draw.Update(test.GetNode());
-		draw.GetInput();
-
-		if (playerToGoFirst == true)
+		if (_mousePosition >= 0 && _mousePosition < 9)
 		{
-			if (test.GetNode()->DidXGoLast() == false)
-			{
-				std::cout << "Enter position";
-				tempString = test.GetNode()->GetBoardString();
-				std::cin >> position;
-				tempString[position] = 'x';
+			tempString = _tree.GetNode()->GetBoardString();
 
-				for (std::shared_ptr<GameState> l : test.GetNode()->GetChildNodes())		//change this to actual not 2015 stuff
-				{
-					if (l->GetBoardString() == tempString)
-					{
-						test.SetNode(l);
-						break;
-					}
-				}
+			if (_playerWentFirst == true && _tree.GetNode()->DidXGoLast() == false)
+			{
+				tempString[_mousePosition] = 'x';
 			}
 			else
 			{
-				std::shared_ptr<GameState> tempNode = test.GetNode()->GetChildNodes().front();
-
-				if (test.GetNode()->GetChildNodes().size() > 0)
-				{
-					for (std::shared_ptr<GameState> l : test.GetNode()->GetChildNodes())		//change this to actual not 2015 stuff
-					{
-						if (l->GetNodeValue() < tempNode->GetNodeValue())
-						{
-							tempNode = l;
-						}
-					}
-				}
-				else
-				{
-					gameOver = true;
-				}
-
-
-				test.SetNode(tempNode);
+				tempString[_mousePosition] = 'o';
 			}
 		}
-		else
+		for (std::shared_ptr<GameState> node : _tree.GetNode()->GetChildNodes())
 		{
-			if (test.GetNode()->DidXGoLast() == true)
+			if (node->GetBoardString() == tempString)
 			{
-				std::cout << "Enter position";
-				tempString = test.GetNode()->GetBoardString();
-				std::cin >> position;
-				tempString[position] = 'o';
+				_tree.SetNode(node);
+				break;
+			}
+		}
+	}
+	else
+	{
+		std::shared_ptr<GameState> tempNode = _tree.GetNode()->GetChildNodes().front();
 
-				for (std::shared_ptr<GameState> l : test.GetNode()->GetChildNodes())		//change this to actual not 2015 stuff
+		for (std::shared_ptr<GameState> node : _tree.GetNode()->GetChildNodes())
+		{
+			if (_playerWentFirst == true)
+			{
+				if (node->GetNodeValue() < tempNode->GetNodeValue())
 				{
-					if (l->GetBoardString() == tempString)
-					{
-						test.SetNode(l);
-						break;
-					}
+					tempNode = node;
 				}
 			}
 			else
 			{
-				std::shared_ptr<GameState> tempNode = test.GetNode()->GetChildNodes().front();
-
-				if (test.GetNode()->GetChildNodes().size() > 0)
+				if (node->GetNodeValue() > tempNode->GetNodeValue())
 				{
-					for (std::shared_ptr<GameState> l : test.GetNode()->GetChildNodes())		//change this to actual not 2015 stuff
-					{
-						if (l->GetNodeValue() > tempNode->GetNodeValue())
-						{
-							tempNode = l;
-						}
-					}
+					tempNode = node;
 				}
-				else
-				{
-					gameOver = true;
-				}
-
-
-				test.SetNode(tempNode);
 			}
-		}		
-		
-		end = clock();
-		deltaTime = double(end - begin) / CLOCKS_PER_SEC;															//this is used for delta time and timers
-		totalTime += deltaTime;
+			
+		}
+		_tree.SetNode(tempNode);
 	}
-	return 0;
 }

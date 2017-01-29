@@ -7,6 +7,9 @@ GameState::GameState()
 	m_xTurnLast = false;
 	m_nodeValue = 0;
 	m_multiplier = 1;
+	m_winningPositions.push_back(-1);
+	m_winningPositions.push_back(-1);
+	m_winningPositions.push_back(-1);
 }
 
 GameState::GameState(std::string _board)
@@ -16,6 +19,9 @@ GameState::GameState(std::string _board)
 	m_nodeValue = 0;
 	m_multiplier = 1;
 	CheckForWin();
+	m_winningPositions.push_back(-1);
+	m_winningPositions.push_back(-1);
+	m_winningPositions.push_back(-1);
 }
 
 GameState::~GameState()
@@ -31,7 +37,7 @@ void GameState::CheckForWin()
 		if (m_boardString[i] == ' ')
 		{
 			m_boardStatus = playing;
-			m_multiplier += 1;
+			m_multiplier *= 10;
 		}
 	}
 
@@ -45,6 +51,9 @@ void GameState::CheckForWin()
 		{
 			m_boardStatus = oWon;
 		}
+		m_winningPositions[0] = 0;
+		m_winningPositions[1] = 1;
+		m_winningPositions[2] = 2;
 	}
 
 	if (m_boardString[3] == m_boardString[4] && m_boardString[4] == m_boardString[5] && m_boardString[3] != ' ')
@@ -57,6 +66,9 @@ void GameState::CheckForWin()
 		{
 			m_boardStatus = oWon;
 		}
+		m_winningPositions[0] = 3;
+		m_winningPositions[1] = 4;
+		m_winningPositions[2] = 5;
 	}
 
 	if (m_boardString[6] == m_boardString[7] && m_boardString[7] == m_boardString[8] && m_boardString[6] != ' ')
@@ -69,6 +81,9 @@ void GameState::CheckForWin()
 		{
 			m_boardStatus = oWon;
 		}
+		m_winningPositions[0] = 6;
+		m_winningPositions[1] = 7;
+		m_winningPositions[2] = 8;
 	}
 
 	if (m_boardString[0] == m_boardString[3] && m_boardString[3] == m_boardString[6] && m_boardString[0] != ' ')
@@ -81,6 +96,9 @@ void GameState::CheckForWin()
 		{
 			m_boardStatus = oWon;
 		}
+		m_winningPositions[0] = 0;
+		m_winningPositions[1] = 3;
+		m_winningPositions[2] = 6;
 	}
 
 	if (m_boardString[1] == m_boardString[4] && m_boardString[4] == m_boardString[7] && m_boardString[1] != ' ')
@@ -93,6 +111,9 @@ void GameState::CheckForWin()
 		{
 			m_boardStatus = oWon;
 		}
+		m_winningPositions[0] = 1;
+		m_winningPositions[1] = 4;
+		m_winningPositions[2] = 7;
 	}
 
 	if (m_boardString[2] == m_boardString[5] && m_boardString[5] == m_boardString[8] && m_boardString[2] != ' ')
@@ -105,6 +126,9 @@ void GameState::CheckForWin()
 		{
 			m_boardStatus = oWon;
 		}
+		m_winningPositions[0] = 2;
+		m_winningPositions[1] = 5;
+		m_winningPositions[2] = 8;
 	}
 
 	if (m_boardString[0] == m_boardString[4] && m_boardString[4] == m_boardString[8] && m_boardString[0] != ' ')
@@ -117,6 +141,9 @@ void GameState::CheckForWin()
 		{
 			m_boardStatus = oWon;
 		}
+		m_winningPositions[0] = 0;
+		m_winningPositions[1] = 4;
+		m_winningPositions[2] = 8;
 	}
 
 	if (m_boardString[2] == m_boardString[4] && m_boardString[4] == m_boardString[6] && m_boardString[2] != ' ')
@@ -129,6 +156,9 @@ void GameState::CheckForWin()
 		{
 			m_boardStatus = oWon;
 		}
+		m_winningPositions[0] = 2;
+		m_winningPositions[1] = 4;
+		m_winningPositions[2] = 6;
 	}
 
 	switch (m_boardStatus)
@@ -137,13 +167,13 @@ void GameState::CheckForWin()
 		m_nodeValue = 0;
 		break;
 	case GameState::xWon:
-		m_nodeValue = 10;
+		m_nodeValue = 2;
 		break;
 	case GameState::oWon:
-		m_nodeValue = -10;
+		m_nodeValue = -2;
 		break;
 	case GameState::draw:
-		m_nodeValue = -5;
+		m_nodeValue = -1;
 		break;
 	default:
 		m_nodeValue = 0;
@@ -198,6 +228,10 @@ std::list<std::shared_ptr<GameState>> GameState::GetChildNodes()
 	return m_childNodes;
 }
 
+std::vector<int> GameState::GetWinningPosition()
+{
+	return m_winningPositions;
+}
 
 
 

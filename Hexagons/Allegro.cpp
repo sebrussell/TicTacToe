@@ -1,10 +1,8 @@
 #include "Allegro.h"
 
-
-
 Allegro::Allegro()
 {
-
+	Initialise();
 }
 
 

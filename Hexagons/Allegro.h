@@ -11,9 +11,9 @@ class Allegro
 public:
 	Allegro();
 	~Allegro();
-	int Initialise();
-private:
+	int Initialise();	
 	ALLEGRO_DISPLAY *display = NULL;
+private:	
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
 	ALLEGRO_FONT *font;
