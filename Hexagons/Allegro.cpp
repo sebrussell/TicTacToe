@@ -225,7 +225,11 @@ void Allegro::DrawExitButtons()
 
 int Allegro::GetInput(bool _endGame)
 {
-	al_wait_for_event(event_queue, &ev);
+	if (al_wait_for_event_timed(event_queue, &ev, 0) != true)
+	{
+		Sleep(100);
+		return -1;		
+	}
 
 	std::vector<ButtonCoords> buttons;
 

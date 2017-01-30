@@ -31,7 +31,10 @@ public:
 private:
 	std::string m_boardString;
 	Status m_boardStatus;
-	std::list<std::shared_ptr<GameState>> m_childNodes;
+	std::list<std::shared_ptr<GameState>> m_childNodes; 
+
+	//std::weak_ptr<GameState> m_parent; //if the algorithm needed to transerve back up the tree
+
 	bool m_xTurnLast;
 	double m_nodeValue;
 	int m_multiplier;

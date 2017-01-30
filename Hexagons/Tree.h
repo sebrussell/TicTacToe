@@ -1,5 +1,5 @@
 #pragma once
-#include "GameState.h"
+#include "GameState.h"		//header files
 #include <algorithm>
 
 class Tree
@@ -13,7 +13,6 @@ public:
 	void SetNode(std::shared_ptr<GameState> _node);
 	void Reset();
 private:
-	//std::vector<std::shared_ptr<GameState>> m_nodes;
 	std::shared_ptr<GameState> rootNode;
 	std::shared_ptr<GameState> generatedTree;
 };

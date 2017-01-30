@@ -6,6 +6,7 @@
 #include "allegro5/allegro_image.h"
 #include <iostream>
 #include "GameState.h"
+#include <Windows.h>
 
 class Allegro
 {
