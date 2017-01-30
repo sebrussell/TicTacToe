@@ -136,7 +136,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Allegro.cpp" />
-    <ClCompile Include="Draw.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tree.cpp" />
@@ -157,7 +156,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Allegro.h" />
-    <ClInclude Include="Draw.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>

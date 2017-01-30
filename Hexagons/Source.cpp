@@ -1,33 +1,49 @@
-#include <stdio.h>
-#include <string.h>
-#include <cmath>
-#include <vector>
-#include <memory>
-#include <ctime>
-#include <iostream>
-
-#include "GameState.h"
 #include "Tree.h"
 #include "Allegro.h"
-#include "Draw.h"
 
 void PlayGame(int _mousePosition, bool _playerLastWent, Tree& _tree);
 
 int main(int argc, char **argv)
 {
-	Allegro allegro;
-	Draw draw(allegro.display);
+	bool playerToGoFirst = false;
+	bool replay = false;
+	int menuInput;
+
+	Allegro allegro;	
 	Tree tree;
 
-	bool playerToGoFirst = false;
+	do
+	{		
+		while (tree.GetNode()->GetGameStatus() == GameState::playing)
+		{
+			allegro.Update(tree.GetNode());
+			PlayGame(allegro.GetInput(false), playerToGoFirst, tree);
+		}
+		allegro.DrawOutcome(tree.GetNode());
+		replay = false;
 
-	while (tree.GetNode()->GetGameStatus() == GameState::playing)
-	{
-		draw.Update(tree.GetNode());
-		PlayGame(draw.GetInput(), playerToGoFirst, tree);
-	}
+		do
+		{			
+			menuInput = allegro.GetInput(true);
+			if (menuInput == 0)
+			{
+				replay = true;
+				tree.Reset();
+				if (playerToGoFirst == true)
+				{
+					playerToGoFirst = false;
+				}
+				else
+				{
+					playerToGoFirst = true;
+				}
+			}
+		} while (menuInput == -1);
 
-	draw.DrawOutcome(tree.GetNode());
+
+	} while (replay == true);
+
+	
 	return 0;
 }
 

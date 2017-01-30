@@ -7,6 +7,7 @@ Tree::Tree()
 	GameState temp("         ");
 	rootNode = std::make_shared<GameState>(temp);
 	GenerateTree();
+	generatedTree = rootNode;
 }
 
 
@@ -77,4 +78,9 @@ std::shared_ptr<GameState> Tree::GetNode()
 void Tree::SetNode(std::shared_ptr<GameState> _node)
 {
 	rootNode = _node;
+}
+
+void Tree::Reset()
+{
+	rootNode = generatedTree;
 }
