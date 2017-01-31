@@ -39,6 +39,7 @@ int main(int argc, char **argv)
 					PlayGame(allegro.GetInput(false), playerToGoFirst, tree, computerVsComputer);
 					playerToGoFirst = true;
 				}
+				Sleep(100);
 			}
 		}
 		allegro.DrawOutcome(tree.GetNode());

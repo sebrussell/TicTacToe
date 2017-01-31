@@ -19,9 +19,6 @@ GameState::GameState(std::string _board)
 	m_nodeValue = 0;
 	m_multiplier = 1;
 	CheckForWin();
-	m_winningPositions.push_back(-1);
-	m_winningPositions.push_back(-1);
-	m_winningPositions.push_back(-1);
 }
 
 GameState::~GameState()
@@ -223,7 +220,12 @@ void GameState::SetNodeValue(double _value)
 	m_nodeValue += _value;
 }
 
-std::list<std::shared_ptr<GameState>> GameState::GetChildNodes()
+//std::list<std::shared_ptr<GameState>> GameState::GetChildNodes()
+//{
+//	return m_childNodes;
+//}
+
+std::vector<std::shared_ptr<GameState>> GameState::GetChildNodes()
 {
 	return m_childNodes;
 }

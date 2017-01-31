@@ -7,7 +7,7 @@ class Tree
 public:
 	Tree();
 	//~Tree();
-	void GenerateTree();
+	double GenerateTree(std::shared_ptr<GameState> _root);
 	double CalculateNodeValues(std::shared_ptr<GameState>& _node);
 	std::shared_ptr<GameState> GetNode();
 	void SetNode(std::shared_ptr<GameState> _node);

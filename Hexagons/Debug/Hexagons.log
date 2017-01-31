@@ -1,2 +1,11 @@
-﻿  Hexagons.vcxproj -> H:\GitHub\TicTacToe\Debug\Hexagons.exe
-  Hexagons.vcxproj -> H:\GitHub\TicTacToe\Debug\Hexagons.pdb (Partial PDB)
+﻿  GameState.cpp
+c:\users\sebru_000\desktop\tictactoe\hexagons\gamestate.cpp(215): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
+  Tree.cpp
+  Source.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Allegro.cpp
+  Hexagons.vcxproj -> C:\Users\sebru_000\Desktop\TicTacToe\Debug\Hexagons.exe
+  Hexagons.vcxproj -> C:\Users\sebru_000\Desktop\TicTacToe\Debug\Hexagons.pdb (Partial PDB)

@@ -26,12 +26,18 @@ public:
 	bool DidXGoLast();
 	int GetNodeValue();
 	void SetNodeValue(double _value);
-	std::list<std::shared_ptr<GameState>> GetChildNodes();
+
+	//std::list<std::shared_ptr<GameState>> GetChildNodes();
+	std::vector<std::shared_ptr<GameState>> GetChildNodes();
+
 	std::vector<int> GetWinningPosition();
 private:
 	std::string m_boardString;
 	Status m_boardStatus;
-	std::list<std::shared_ptr<GameState>> m_childNodes; 
+
+	//std::list<std::shared_ptr<GameState>> m_childNodes; 
+	std::vector<std::shared_ptr<GameState>> m_childNodes;
+
 
 	//std::weak_ptr<GameState> m_parent; //if the algorithm needed to transerve back up the tree
 

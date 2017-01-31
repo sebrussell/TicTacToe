@@ -6,7 +6,8 @@ Tree::Tree()
 {
 	GameState temp("         ");
 	rootNode = std::make_shared<GameState>(temp);
-	GenerateTree();
+	GenerateTree(rootNode);
+	//CalculateNodeValues(rootNode);
 	generatedTree = rootNode;
 }
 
@@ -15,47 +16,76 @@ Tree::Tree()
 //{
 //}
 
-void Tree::GenerateTree()
+double Tree::GenerateTree(std::shared_ptr<GameState> _root)
 {
-	std::list<std::shared_ptr<GameState>> m_nodesToExpand;
-
-	m_nodesToExpand.push_back(rootNode);
-
-	while (m_nodesToExpand.size() > 0)
+	if (_root->GetGameStatus() == GameState::playing)
 	{
-		if (m_nodesToExpand.front()->GetGameStatus() == GameState::playing)
-		{
-			for (size_t i = 0; i < 9; i++) {
-				std::string tempString = m_nodesToExpand.front()->GetBoardString();
-				std::shared_ptr<GameState> tempBoard(new GameState);
-				if (tempString[i] == ' ')
+		for (size_t i = 0; i < 9; i++) {
+			std::string tempString = _root->GetBoardString();
+			std::shared_ptr<GameState> tempBoard(new GameState);
+			if (tempString[i] == ' ')
+			{
+				if (_root->DidXGoLast() == false)
 				{
-					if (m_nodesToExpand.front()->DidXGoLast() == false)
-					{
-						tempString[i] = 'x';
-						tempBoard->TurnPlaced(true);
-					}
-					else
-					{
-						tempString[i] = 'o';
-						tempBoard->TurnPlaced(false);
-					}
-					tempBoard->SetBoardString(tempString);
-					tempBoard->CheckForWin();
-					m_nodesToExpand.front()->AddChild(tempBoard);
-					m_nodesToExpand.push_back(tempBoard);
+					tempString[i] = 'x';
+					tempBoard->TurnPlaced(true);
 				}
+				else
+				{
+					tempString[i] = 'o';
+					tempBoard->TurnPlaced(false);
+				}
+				tempBoard->SetBoardString(tempString);
+				tempBoard->CheckForWin();
+				_root->AddChild(tempBoard);
+				_root->SetNodeValue(GenerateTree(tempBoard));
 			}
 		}
-		m_nodesToExpand.erase(m_nodesToExpand.begin());
 	}
-
-	std::cout << "Generated the tree" << std::endl;
-
-	CalculateNodeValues(rootNode);
-
-	std::cout << "Given the node values" << std::endl;
+	return _root->GetNodeValue();
 }
+
+//void Tree::GenerateTree()
+//{
+//	std::list<std::shared_ptr<GameState>> m_nodesToExpand;
+//
+//	m_nodesToExpand.push_back(rootNode);
+//
+//	while (m_nodesToExpand.size() > 0)
+//	{
+//		if (m_nodesToExpand.front()->GetGameStatus() == GameState::playing)
+//		{
+//			for (size_t i = 0; i < 9; i++) {
+//				std::string tempString = m_nodesToExpand.front()->GetBoardString();
+//				std::shared_ptr<GameState> tempBoard(new GameState);
+//				if (tempString[i] == ' ')
+//				{
+//					if (m_nodesToExpand.front()->DidXGoLast() == false)
+//					{
+//						tempString[i] = 'x';
+//						tempBoard->TurnPlaced(true);
+//					}
+//					else
+//					{
+//						tempString[i] = 'o';
+//						tempBoard->TurnPlaced(false);
+//					}
+//					tempBoard->SetBoardString(tempString);
+//					tempBoard->CheckForWin();
+//					m_nodesToExpand.front()->AddChild(tempBoard);
+//					m_nodesToExpand.push_back(tempBoard);
+//				}
+//			}
+//		}
+//		m_nodesToExpand.erase(m_nodesToExpand.begin());
+//	}
+//
+//	std::cout << "Generated the tree" << std::endl;
+//
+//	CalculateNodeValues(rootNode);
+//
+//	std::cout << "Given the node values" << std::endl;
+//}
 
 double Tree::CalculateNodeValues(std::shared_ptr<GameState>& _node)
 {

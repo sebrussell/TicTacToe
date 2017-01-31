@@ -1,0 +1,7 @@
+debug
+vectors: 1:24 with 299 mb
+lists: 1:30 with 352 mb
+
+release
+lists: 1.578s with 120mb
+vectors: 1.4s with 104mb 
